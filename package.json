@@ -1,0 +1,14 @@
+{
+  "name": "youtube-with-friends",
+  "version": "1.0.0",
+  "description": "Watch youtube video with your friend in sync",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Khukhuna",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
