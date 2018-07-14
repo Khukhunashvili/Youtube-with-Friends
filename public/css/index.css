@@ -7,7 +7,10 @@ body {
   background-size: cover;
 }
 
-
+.title {
+  color: white;
+  margin: 50px;
+}
 
 #particles-js canvas {
   display: block;
@@ -27,4 +30,17 @@ body {
   z-index: -10;
   top: 0;
   left: 0;
+}
+
+#player {
+  width: 70%;
+  margin: 50px;
+}
+
+#youtube-link {
+  width: 50%;
+}
+
+#link-submit {
+  width: 20%;
 }
