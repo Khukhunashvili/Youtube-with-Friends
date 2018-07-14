@@ -1,10 +1,13 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const http = require('http').Server(app);
 
+app.use(express.static('public'));
+
 app.get('/', function(req, res){
-  res.send('<h1> Initial Commit </h1>');
+  res.render('index.ejs');
 });
 
 http.listen(8080, function(){
   console.log('Server started on port 8080');
-})
+});
