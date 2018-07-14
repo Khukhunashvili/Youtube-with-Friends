@@ -37,10 +37,18 @@ body {
   margin: 50px;
 }
 
-#youtube-link {
+input {
   width: 50%;
 }
 
 #link-submit {
   width: 20%;
+}
+
+#join {
+  width: 10%;
+}
+
+#generate {
+  width: 10%;
 }
