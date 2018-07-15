@@ -36,7 +36,10 @@ io.on('connection', function(socket){
       if(err){
         console.log("ERROR "+err);
       }else{
-        console.log("NEW ROOM: "+newRoom);
+        io.emit('joined', {
+          'roomId' : data['id'],
+          'video-id' : data['video-id']
+        });
       }
     });
   });
