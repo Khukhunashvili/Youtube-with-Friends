@@ -16,7 +16,8 @@ mongoose.connect("mongodb://localhost:27017/youtube_sync_app", { useNewUrlParser
 // define Room Schema
 var roomSchema = new mongoose.Schema({
   roomId: String,
-  videoId: String
+  videoId: String,
+  roomOwner: String
 });
 
 var Room = mongoose.model("Room", roomSchema);
@@ -32,13 +33,14 @@ io.on('connection', function(socket){
   socket.on('url-change', function(data){
     // 1. get room by room id ( data['id'] )
     // 2. set value of video id to data['video-id']
-    Room.update({ 'roomId' : data['id'] }, { $set: { videoId : data['video-id'] } }, { upsert: true }, function(err, newRoom){
+    Room.update({ 'roomId' : data['id'] }, { $set: { videoId : data['video-id'], roomOwner: data['user-id'] } }, { upsert: true }, function(err, newRoom){
       if(err){
         console.log("ERROR "+err);
       }else{
         io.emit('joined', {
           'roomId' : data['id'],
-          'video-id' : data['video-id']
+          'video-id' : data['video-id'],
+          'roomOwner' : data['user-id']
         });
       }
     });
@@ -48,8 +50,8 @@ io.on('connection', function(socket){
     io.emit('video-status-update', data);
   })
 
-  socket.on('join', function(id){
-    var room = Room.findOne({ 'roomId' : id }, 'roomId videoId', function(err, joinedRoom){
+  socket.on('join', function(data){
+    var room = Room.findOne({ 'roomId' : data['id'] }, 'roomId videoId roomOwner', function(err, joinedRoom){
       if(err){
         console.log("ERROR"+err);
       }else{
@@ -57,12 +59,14 @@ io.on('connection', function(socket){
           console.log("CONNECTED ROOM"+joinedRoom);
           io.emit('joined', {
             'roomId' : joinedRoom['roomId'],
-            'video-id' : joinedRoom['videoId']
+            'video-id' : joinedRoom['videoId'],
+            'roomOwner' : joinedRoom['roomOwner']
           });
         } else{
           new Room({
-            'roomId': id,
-            'videoId': 'dQw4w9WgXcQ'
+            'roomId': data['id'],
+            'videoId': 'dQw4w9WgXcQ',
+            'roomOwner': data['user-id']
           }).save();
         }
       }

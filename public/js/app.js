@@ -12,9 +12,13 @@ var ID = function () {
   return Math.random().toString(36).substr(2, 9);
 };
 
-// initial value
+// initial room value
 var id = ID();
 roomId.value = id;
+
+// random user id
+var userId = ID();
+var roomOwner = userId;
 
 submitBtn.addEventListener("click", function(){
   var link = youtubeLink.value;
@@ -24,6 +28,7 @@ submitBtn.addEventListener("click", function(){
 
 generate.addEventListener("click", function(){
   id = ID();
+  roomOwner = userId;
   roomId.value = id;
   var videoId = player.getVideoData()['video_id'];
   changeUrl(id, videoId);
@@ -31,7 +36,7 @@ generate.addEventListener("click", function(){
 
 join.addEventListener("click", function(){
   id = roomId.value;
-  socket.emit('join', id);
+  socket.emit('join', { 'user-id' : userId, 'id' : id });
   status.innerHTML = "Connecting...";
   status.style.color = "#eeff00";
 })
@@ -39,12 +44,16 @@ join.addEventListener("click", function(){
 function changeUrl(id, videoId){
   socket.emit('url-change', {
     'id': id,
-    'video-id': videoId
+    'video-id': videoId,
+    'user-id' : userId
   });
 }
 
 socket.on('joined', function(data){
   if( id == data['roomId'] ){
+    roomOwner = data['roomOwner']
+    console.log("ROOM OWNER: "+roomOwner);
+    console.log("MY ID: "+userId);
     youtubeLink.value = 'https://www.youtube.com/watch?v='+data['video-id'];
     player.loadVideoById(data['video-id']);
     status.innerHTML = "Connected";
@@ -53,8 +62,6 @@ socket.on('joined', function(data){
 });
 
 socket.on('url-changed', function(data){
-  console.log(id);
-  console.log(data['roomId']);
   if( id == data['roomId'] ){
     player.loadVideoById(data['video-id']);
   }
