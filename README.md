@@ -3,7 +3,7 @@ Watch youtube video with friends in sync. :bowtie: :heart_eyes:
 If you are in a same 'room' as your friends, pausing your video will pause your friends video too.
 
 
-## ![DEMO](https://www.youtube.com/watch?v=6DagLWSwm7E&feature=youtu.be)
+## [DEMO](https://www.youtube.com/watch?v=6DagLWSwm7E)
 <img src="https://user-images.githubusercontent.com/37747169/42736781-b727fbae-887c-11e8-8c3b-f5eeb1a122f3.png" width="100%"></img>
 
 ### Setup
