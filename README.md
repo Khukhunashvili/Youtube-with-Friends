@@ -7,9 +7,9 @@ If you are in a same 'room' as your friends, pausing your video will pause your 
 <img src="https://user-images.githubusercontent.com/37747169/42736781-b727fbae-887c-11e8-8c3b-f5eeb1a122f3.png" width="100%"></img>
 
 ### Setup
-* Install socket.io, express, ejs, mongoose packages using npm3
+* Install socket.io, express, ejs, mongoose packages using npm. Example: 
 ```
-       npm install --save package-name
+       npm install --save express
 ```
 * Run ![mongodb](https://www.mongodb.com/) server before starting project.
 
