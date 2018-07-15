@@ -71,9 +71,18 @@ socket.on('video-status-update', function(data){
   if( id == data['roomId'] ){
     if(data['statusCode'] == 2){
       player.pauseVideo();
-    }
-    if(data['statusCode'] == 1){
+    }else if(data['statusCode'] == 1){
       player.playVideo();
     }
+
+    var difference = data['time'] - player.getCurrentTime();
+    if(difference>2 || difference<-2){
+      if(roomOwner != userId){
+        player.seekTo(data['time']);
+      }
+    }
+
+
+
   }
 });
