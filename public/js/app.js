@@ -67,6 +67,18 @@ socket.on('url-changed', function(data){
   }
 });
 
+if(roomOwner = userId){
+  setInterval(function(){
+    if(player.getPlayerState == 1){
+      socket.emit('video-status-update', {
+        'roomId' : id,
+        'statusCode' : 1,
+        'time' : player.getCurrentTime()
+      });
+    }
+  }, 3000)
+}
+
 socket.on('video-status-update', function(data){
   if( id == data['roomId'] ){
     if(data['statusCode'] == 2){
@@ -81,8 +93,6 @@ socket.on('video-status-update', function(data){
         player.seekTo(data['time']);
       }
     }
-
-
 
   }
 });

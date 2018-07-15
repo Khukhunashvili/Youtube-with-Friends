@@ -27,9 +27,6 @@ function onPlayerReady(event) {
 var done = false;
 
 function onPlayerStateChange(event) {
-  if(roomOwner != userId){
-    return;
-  }
   socket.emit('video-status-update', {
     'roomId' : id,
     'statusCode' : event.data,
