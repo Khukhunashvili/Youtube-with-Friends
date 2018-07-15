@@ -17,13 +17,14 @@ roomId.value = id;
 submitBtn.addEventListener("click", function(){
   var link = youtubeLink.value;
   var videoId = link.split("v=")[1].split('?')[0];
-  urlChange(id, videoId);
+  changeUrl(id, videoId);
 });
 
 generate.addEventListener("click", function(){
   id = ID();
   roomId.value = id;
-  urlChange(id, videoId);
+  var videoId = player.getVideoData()['video_id'];
+  changeUrl(id, videoId);
 });
 
 join.addEventListener("click", function(){
@@ -34,6 +35,13 @@ join.addEventListener("click", function(){
 function changeUrl(id, videoId){
   socket.emit('url-change', {
     'id': id,
-    'video-id': player.getVideoData()['video_id']
+    'video-id': videoId
   });
 }
+
+socket.on('joined', function(data){
+  if( id == data['roomId'] ){
+    youtubeLink.value = 'https://www.youtube.com/watch?v='+data['video-id'];
+    player.loadVideoById(data['video-id']);
+  }
+});
