@@ -44,6 +44,10 @@ io.on('connection', function(socket){
     });
   });
 
+  socket.on('video-status-update', function(data){
+    io.emit('video-status-update', data);
+  })
+
   socket.on('join', function(id){
     var room = Room.findOne({ 'roomId' : id }, 'roomId videoId', function(err, joinedRoom){
       if(err){

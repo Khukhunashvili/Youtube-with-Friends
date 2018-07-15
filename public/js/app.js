@@ -59,3 +59,14 @@ socket.on('url-changed', function(data){
     player.loadVideoById(data['video-id']);
   }
 });
+
+socket.on('video-status-update', function(data){
+  if( id == data['roomId'] ){
+    if(data['statusCode'] == 2){
+      player.pauseVideo();
+    }
+    if(data['statusCode'] == 1){
+      player.playVideo();
+    }
+  }
+});
