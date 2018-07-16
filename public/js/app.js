@@ -93,6 +93,5 @@ socket.on('video-status-update', function(data){
         player.seekTo(data['time']);
       }
     }
-
   }
 });

@@ -3,6 +3,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
+const Room = require('./models/Room.js');
 
 // connect to database
 mongoose.connect("mongodb://localhost:27017/youtube_sync_app", { useNewUrlParser: true }, function(err, db){
@@ -12,15 +13,6 @@ mongoose.connect("mongodb://localhost:27017/youtube_sync_app", { useNewUrlParser
     console.log('Connected to database');
   }
 });
-
-// define Room Schema
-var roomSchema = new mongoose.Schema({
-  roomId: String,
-  videoId: String,
-  roomOwner: String
-});
-
-var Room = mongoose.model("Room", roomSchema);
 
 app.use(express.static('public'));
 
