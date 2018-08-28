@@ -1,9 +1,10 @@
-const youtubeLink = document.getElementById('youtube-link');
-const submitBtn = document.getElementById('link-submit');
-const generate = document.getElementById('generate');
-const join = document.getElementById('join');
-const roomId = document.getElementById('room-id');
-const status = document.getElementById('form-text');
+const youtubeLink = document.getElementById("videoId");
+const submitBtn = document.getElementById("idSubmit");
+const generate = document.getElementById("generateRoom");
+const join = document.getElementById("joinRoom");
+const roomId = document.getElementById("roomInput");
+const roomValue = document.getElementById("roomValue");
+const status = document.getElementById("status");
 
 const socket = io();
 
@@ -14,22 +15,26 @@ var ID = function () {
 
 // initial room value
 var id = ID();
-roomId.value = id;
+roomValue.innerHTML = id;
 
 // random user id
 var userId = ID();
 var roomOwner = userId;
 
 submitBtn.addEventListener("click", function(){
+  // get the link value
   var link = youtubeLink.value;
+  // parse the video id from link
   var videoId = link.split("v=")[1].split('?')[0];
   changeUrl(id, videoId);
 });
 
 generate.addEventListener("click", function(){
   id = ID();
+  // set current user as room owner
   roomOwner = userId;
-  roomId.value = id;
+  roomValue.innerHTML = id;
+  // get video id from player
   var videoId = player.getVideoData()['video_id'];
   changeUrl(id, videoId);
 });
@@ -67,17 +72,6 @@ socket.on('url-changed', function(data){
   }
 });
 
-if(roomOwner = userId){
-  setInterval(function(){
-    if(player.getPlayerState == 1){
-      socket.emit('video-status-update', {
-        'roomId' : id,
-        'statusCode' : 1,
-        'time' : player.getCurrentTime()
-      });
-    }
-  }, 3000)
-}
 
 socket.on('video-status-update', function(data){
   if( id == data['roomId'] ){
@@ -89,9 +83,7 @@ socket.on('video-status-update', function(data){
 
     var difference = data['time'] - player.getCurrentTime();
     if(difference>2 || difference<-2){
-      if(roomOwner != userId){
         player.seekTo(data['time']);
-      }
     }
   }
 });

@@ -1,0 +1,44 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+.navbar {
+	font-weight: 600;
+	border-bottom-color: rgba(0, 0, 0, 0.1);
+	border-bottom-width: 5px;
+}
+
+.nav li a {
+	color: #396afc;
+	font-weight: bold;
+}
+
+.navbar-brand {
+	font-size: 150%;
+	font-weight: bold;
+	color: #396afc;
+	background-image: linear-gradient(to right, #434343 35%, black 65%);
+	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+}
+
+.navbar-brand:hover {
+	color: #396afc;
+}
+
+
+
+.join-btn {
+	background: #396afc;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #3d58ff, #396afc);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #3d58ff, #396afc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	color: white;
+	font-weight: bold;
+}
+
+.fa-handshake {
+	background-image: linear-gradient(to right, #00c6fb 0%, #005bea 100%);
+	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+}

@@ -1,33 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title> Youtube with Friends </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/index.css">
-  </head>
-  <body>
-    <div id="particles-js"></div>
-    <div class="container text-center">
-      <h1 class="text-center title"> <span class="glyphicon glyphicon-link"></span> Watch Youtube Video With Friends </h1>
-      <div class="form-group">
-        <input type="input" id="youtube-link" placeholder="Youtube link"></input>
-        <button id="link-submit"> Submit </button>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> YouTube with Friends :) </title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"> <i class="fa fa-handshake"></i> &nbsp; YouTube w/ Friends</a>
       </div>
-      <div class="form-group">
-        <input type="input" id="room-id" placeholder="Room id"></input>
-        <button id="join"> Join </button>
-        <button id="generate"> Generate </button>
-      </div>
-        <h4 id="form-text"> Connected! </h4>
-      </br>
-      <div id="player"></div>
-    </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/lib/particles.min.js"></script>
-    <script src="/js/particles-app.js"></script>
-    <script src="/js/youtube-player.js"></script>
-    <script src="/js/app.js"></script>
-  </body>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Room #<span id="roomValue">ERROR</span></a></li>
+          
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" id="status"></a></li>
+        </ul>
+        <div class="navbar-form navbar-right">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Room #" id="roomInput">
+          </div>
+          <button class="btn join-btn" id="joinRoom"> Join </button>
+          <button class="btn join-btn" id="generateRoom"> Generate #</button>
+        </div>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+  <div class="container">
+    <div class="input-wrapper center-block text-center">
+      <input placeholder="Video ID or YouTube URL" id="videoId">
+      <button id="idSubmit"> Play </button>
+    </div>
+  </div>
+  <div class="player-wrapper">
+    <div id="player"></div>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="js/youtube-player.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
 </html>

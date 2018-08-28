@@ -5,8 +5,9 @@ const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 const Room = require('./models/Room.js');
 
+
 // connect to database
-mongoose.connect("mongodb://localhost:27017/youtube_sync_app", { useNewUrlParser: true }, function(err, db){
+mongoose.connect("mongodb://localhost:27017/youtube_app", { useNewUrlParser: true }, function(err, db){
   if(err){
     console.log(err);
   }else{
@@ -48,7 +49,6 @@ io.on('connection', function(socket){
         console.log("ERROR"+err);
       }else{
         if(joinedRoom){
-          console.log("CONNECTED ROOM"+joinedRoom);
           io.emit('joined', {
             'roomId' : joinedRoom['roomId'],
             'video-id' : joinedRoom['videoId'],

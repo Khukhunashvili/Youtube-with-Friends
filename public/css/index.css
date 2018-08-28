@@ -1,60 +1,32 @@
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-image: url('/image/background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+.input-wrapper {
+	width: 80%;
+	font-weight: bold;
+	margin-top: 30px;
 }
 
-.title {
-  color: white;
-  margin: 50px;
+.player-wrapper {
+	width: 100%;
+	margin: 20px 40px; 
+	padding: 35px 40px;
 }
 
-#particles-js canvas {
-  display: block;
-  vertical-align: bottom;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  opacity: 1;
-  -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
-  transition: opacity .8s ease, transform 1.4s ease;
-}
-
-#particles-js {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: -10;
-  top: 0;
-  left: 0;
-}
-
-#player {
-  width: 70%;
-  margin: 50px;
-}
 
 input {
-  width: 50%;
+	color: rgba(0, 0, 0, 0.8) !important;
 }
 
-#link-submit {
-  width: 20%;
+#videoId {
+	width: 55%;
+	padding: 5px;
 }
 
-#join {
-  width: 10%;
-}
-
-#generate {
-  width: 10%;
-}
-
-#form-text {
-  text-align: left;
-  padding-left: 15%;
-  color: #21ff00;
+#idSubmit {
+	width: 17.5%;
+	padding: 5px;
+	background: #396afc;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #396afc, #3d58ff);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #396afc, #3d58ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	color: white;
+	border-color: #396afc;
+	border-radius: 4px;
 }
